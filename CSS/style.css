@@ -14,3 +14,24 @@ body{
     background-size: cover;
 
 }
+
+button {
+    background-color: #fdfdfd;
+    color: #102f5e;
+    border: 2px solid #102f5e;
+    padding: .3rem .6rem;
+    font-size: .7rem;
+    cursor: pointer;
+    align-items: center;
+    transition: 0.4s;
+
+}
+
+button:hover {
+    background-color: #102f5e;
+}
+
+button:hover > i {
+    color: #fdfdfd;
+}
+
