@@ -12,3 +12,10 @@ const cancelEditBtn = document.querySelector("#cancel-edit-btn");
 
 
 //Eventos
+
+todoForm.addEventListener("submit", (e) =>{
+    e.preventDefault();
+
+    console.log("Enviou form");
+    
+})
