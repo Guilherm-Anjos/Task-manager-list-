@@ -1,40 +1,49 @@
 /* =========================
-   RESET / BASE
+   RESET
 ========================= */
 * {
-  padding: 0;
   margin: 0;
+  padding: 0;
   box-sizing: border-box;
-  font-family: Verdana;
-  color: #333;
+  font-family: Verdana, sans-serif;
 }
 
 body {
-  margin: 0;
   min-height: 100vh;
   overflow-x: hidden;
   background: transparent;
-}
-
-canvas {
-  display: block;
-  vertical-align: bottom;
 }
 
 /* =========================
    PARTICLES (FUNDO)
 ========================= */
 #particles-js {
-  position: fixed;     /* cobre a tela inteira */
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   background-color: #5c5757;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: 50% 50%;
-  z-index: -1;         /* FICA ATRÁS DE TUDO */
+  z-index: 1;
+}
+
+#particles-js canvas {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+/* =========================
+   CONTAINER PRINCIPAL
+========================= */
+.todo-container {
+  position: relative;
+  z-index: 10;
+  max-width: 450px;
+  margin: 3rem auto;
+  background-color: #fdfdfd;
+  padding: 1.5rem;
+  border-radius: 15px;
 }
 
 /* =========================
@@ -48,28 +57,27 @@ button {
   font-size: 1rem;
   cursor: pointer;
   display: flex;
-  justify-content: center;
   align-items: center;
-  transition: 0.4s;
+  justify-content: center;
+  transition: 0.3s;
 }
 
 button:hover {
   background-color: #102f5e;
 }
 
-button:hover > i {
+button:hover i {
   color: #fff;
 }
 
 button i {
   pointer-events: none;
   color: #102f5e;
-  font-weight: bold;
 }
 
 input,
 select {
-  padding: 0.25rem 0.5rem;
+  padding: 0.3rem;
 }
 
 .hide {
@@ -77,24 +85,11 @@ select {
 }
 
 /* =========================
-   CONTAINER PRINCIPAL
-========================= */
-.todo-container {
-  position: relative;  /* cria contexto de empilhamento */
-  z-index: 10;         /* FICA NA FRENTE */
-  max-width: 450px;
-  margin: 3rem auto 0;
-  background-color: #fdfdfd;
-  padding: 1.5rem;
-  border-radius: 15px;
-}
-
-/* =========================
    HEADER
 ========================= */
 .todo-container header {
   text-align: center;
-  padding: 0 1rem 1rem;
+  padding-bottom: 1rem;
   border-bottom: 1px solid #ccc;
 }
 
@@ -103,68 +98,52 @@ select {
 ========================= */
 #todo-form,
 #edit-form {
-  padding: 1rem;
+  padding: 1rem 0;
   border-bottom: 1px solid #ccc;
-}
-
-#todo-form p,
-#edit-form p {
-  margin-bottom: 0.5rem;
-  font-weight: bold;
 }
 
 .form-control {
   display: flex;
-}
-
-.form-control input {
-  margin-right: 0.3rem;
-}
-
-#cancel-edit-btn {
-  margin-top: 1rem;
-  color: #444;
+  gap: 0.3rem;
 }
 
 /* =========================
    TOOLBAR
 ========================= */
 #toolbar {
-  padding: 1rem;
-  border-bottom: 1px solid #ccc;
   display: flex;
-}
-
-#toolbar h4 {
-  margin-bottom: 0.5rem;
+  padding: 1rem 0;
+  border-bottom: 1px solid #ccc;
 }
 
 #search {
-  border-right: 1px solid #ddd;
-  padding-right: 1rem;
-  margin-right: 1rem;
   width: 65%;
-  display: flex;
-  flex-direction: column;
-}
-
-#search form {
-  display: flex;
-}
-
-#search input {
-  width: 100%;
-  margin-right: 0.3rem;
+  padding-right: 1rem;
+  border-right: 1px solid #ddd;
 }
 
 #filter {
   width: 35%;
-  display: flex;
-  flex-direction: column;
+  padding-left: 1rem;
 }
 
-#filter select {
+/* 🔥 TRECHO CORRIGIDO 🔥 */
+#search form {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+#search input {
   flex: 1;
+  width: auto;
+}
+
+#erase-button {
+  flex-shrink: 0;
+  height: 32px;
+  width: 36px;
+  padding: 0;
 }
 
 /* =========================
@@ -172,11 +151,9 @@ select {
 ========================= */
 .todo {
   display: flex;
-  justify-content: space-around;
   align-items: center;
   padding: 1rem;
   border-bottom: 1px solid #ddd;
-  transition: 0.3s;
 }
 
 .todo h3 {
@@ -189,11 +166,10 @@ select {
 }
 
 .done {
-  background: #395169;
+  background-color: #395169;
 }
 
 .done h3 {
   color: #fff;
   text-decoration: line-through;
-  font-style: italic;
 }
